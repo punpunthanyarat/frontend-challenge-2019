@@ -1,1 +1,101 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+@import "./styling/variables.scss";
+
+mat-form-field {
+  width: 100%;
+  cursor: pointer;
+}
+* {
+  font-family: cursive;
+}
+.side-menu{
+  width: 25%;
+  background: floralwhite;
+  .container{
+    background: floralwhite;
+  }
+}
+
+.search-btn{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin: 15px;
+}
+.nav {
+  margin-top:0;
+  margin-bottom: 1%;
+  padding-left: 0;
+  padding-top: 0;
+}
+.title {
+  color: coral;
+  font-size: 16px;
+  white-space: normal;
+  font-family: cursive;
+}
+.btn-modify{
+  line-height: 0.5;
+}
+
+::ng-deep .mat-drawer-side{
+  border-right: 0px;
+}
+
+.trhover{
+  cursor: pointer;
+}
+
+.trhover:hover{
+  background: darken($white, 20%);
+}
+
+mat-paginator{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  /deep/ .mat-paginator-container{
+    padding: 0 30px;
+  }
+}
+
+@media screen and (max-width: 1023px){
+  .side-menu{
+      width: 35%;
+  }
+}
+
+@media screen and (max-width: 576px){
+  .side-menu{
+      width: 75%;
+  }
+}
+mat-sidenav-container{
+    height: calc(100vh - 65px);
+    z-index: unset;
+}
+mat-sidenav {
+  z-index: 1000 !important;
+  width: 25% !important;
+  height: auto !important;
+  box-shadow: 3px -2px 12px -5px lightskyblue !important;
+}
+.mat-drawer-inner-container {
+  background: floralwhite;
+}
+
+@media screen and (max-width: 576px){
+    mat-sidenav {
+        width: 65% !important;
+    }
+}
+#rowOverflow{
+    padding-left: 0px;
+    padding-right: 0px;
+    overflow-y: scroll;
+    height: calc(90vh - 150px) !important;
+}

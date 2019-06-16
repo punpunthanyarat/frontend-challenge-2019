@@ -1,9 +1,8 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LayoutModule } from './layout/layout.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule, DatePipe } from '@angular/common';
+import { LayoutComponent } from './layout.component';
+import { LayoutRoutingModule } from './layout-routing.module';
+import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
           MatFormFieldModule,
@@ -29,16 +28,19 @@ import {
           MatTabsModule,
           MatBadgeModule
        } from '@angular/material';
-import { HttpClientModule } from '@angular/common/http';
+import { ToolbarModule } from '.././toolbar/toolbar.module';
+import { HomeComponent } from './home/home.component';
+import { VersionComponent } from './version/version.component';
 @NgModule({
   declarations: [
-    AppComponent
+    LayoutComponent,
+    HomeComponent,
+    VersionComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    LayoutModule,
-    BrowserAnimationsModule,
+    CommonModule,
+    LayoutRoutingModule,
+    RouterModule,
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
@@ -62,13 +64,17 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     MatTabsModule,
     MatBadgeModule,
-    HttpClientModule
+    ToolbarModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    DatePipe
+  ],
+  exports: [
+    VersionComponent
+  ]
 })
-export class AppModule {
+export class LayoutModule {
   constructor(private dateAdapter: DateAdapter<Date>) {
-    dateAdapter.setLocale('th-TH'); // DD/MM/YYYY
+    dateAdapter.setLocale('th-TH');
   }
 }

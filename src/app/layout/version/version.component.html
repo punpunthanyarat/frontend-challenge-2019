@@ -1,0 +1,18 @@
+<div class="version">
+  <div class="logo">
+    <img src="assets/flower_logo2px.jpg">
+  </div>
+  <div class="d-block">
+    <div class="text-left">
+      <a *ngIf="!production"  routerLinkActive="router-link-active" target="_blank">
+        version : {{version.hash}}
+      </a>
+      <a *ngIf="production"  routerLinkActive="router-link-active" target="_blank">
+        version : {{version.version}}
+      </a>
+    </div>
+    <div style="margin-top: -5px;">
+      <a>Copyright © {{year}}. All rights reserved.</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+.toolbar {
+  background: skyblue;
+  border-top: 3px solid floralwhite;
+  top: 0;
+  box-shadow: 0px 0px 3px 1px sienna;
+  position: static;
+  z-index: 100;
+}
+
+.menu-toggle {
+  display: none;
+}
+.logo {
+  width: unset;
+  text-align: center;
+}
+@media screen and (max-width: 1023px) {
+  .menu-toggle {
+    display: block;
+    cursor: pointer;
+  }
+  .logo {
+    display: none;
+  }
+}
+.login-btn {
+  min-width: unset;
+  background: skyblue;
+  i {
+    color: coral;
+  }
+}
+.btn.focus, .btn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem floralwhite;
+}
+/deep/ .mat-menu-content:not(:empty) {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    background: floralwhite !important;
+}

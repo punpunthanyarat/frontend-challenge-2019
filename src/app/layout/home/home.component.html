@@ -1,0 +1,209 @@
+<mat-sidenav-container class="example-container">
+    <mat-sidenav #drawer class="side-menu" [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+        fixedTopGap="56" [opened]="mobileQuery.matches ? 'false' : 'true'" [disableClose]="mobileQuery.matches ? 'false' : 'true'">
+        <div class="clock">
+        <canvas class="CoolClock:Tumb" id="_coolclock_auto_id_29" width="200" height="200"></canvas>
+        </div>
+        <div class="container mt-3">
+          <mat-tab-group>
+            <mat-tab >
+              <ng-template mat-tab-label >
+                <span class="title">
+                    Search Boxes
+                </span>
+              </ng-template>
+              <ng-template matTabContent>
+                <div class="row">
+                  <div class="col-md-12">
+                      <mat-form-field appearance="outline">
+                          <mat-label>Search country/city</mat-label>
+                          <mat-icon matSuffix><i class="fas fa-search"></i></mat-icon>
+                          <input  matInput [matAutocomplete]="auto" [formControl]="countryControl" (input)="get_location($event)" >
+                          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" >
+                            <mat-option *ngFor="let country of filteredCountry  | async" [value]="country" (onSelectionChange)="get_lat_lon($event)">
+                              <span>{{country.address.freeformAddress}}, {{country.address.country}}</span>
+                            </mat-option>
+                          </mat-autocomplete>
+                      </mat-form-field>
+                  </div>
+                  <div class="col-md-12">
+                      <mat-form-field appearance="outline">
+                          <mat-label>Choose an interested point</mat-label>
+                          <mat-icon matSuffix><i class="fas fa-city"></i></mat-icon>
+                          <mat-select [formControl]="cityControl" (ngModelChange)="get_city($event)" >
+                            <mat-option *ngFor="let city of cityitem; index as l" [value]="city" >
+                              <span title="{{city.name}} ( lat: {{city.coord.lat}}, lon: {{city.coord.lon}} )">{{city.name}} ( lat: {{city.coord.lat}}, long: {{city.coord.lon}} )</span>
+                            </mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                  </div>
+                  <div class="col-md-12">
+                      <mat-form-field appearance="outline">
+                          <mat-label>Temperature unit</mat-label>
+                          <mat-icon matSuffix><i class="fas fa-temperature-low"></i></mat-icon>
+                          <mat-select [formControl]="tempControl" >
+                            <mat-option *ngFor="let unit of unititem" [value]="unit" (onSelectionChange)="get_data($event)">
+                              <span title="{{unit.name}}">{{unit.name}}</span>
+                            </mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                  </div>
+                </div>
+              </ng-template>
+            </mat-tab>
+            <mat-tab >
+              <ng-template mat-tab-label >
+                <span class="title">
+                    My History
+                </span>
+              </ng-template>
+              <ng-template matTabContent style="padding-right: 0px; padding-left: 0px;">
+                <table class="table" *ngIf="favlength > 0">
+                    <tbody>
+                        <tr class="trhover font-table" *ngFor="let fav of favitem; index as j">
+                            <td>
+                              <p>{{fav.name}}</p>
+                            </td>
+                            <td>
+                              <p>{{fav.main.temp}} K</p>
+                            </td>
+                            <td>
+                              <i class="far fa-trash-alt" style="color: red" (click)="delete_fav(j)"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+              </ng-template>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+        <version class="version"></version>
+    </mat-sidenav>
+    <mat-sidenav-content class="container-fluid has-paginator side-nav-content">
+      <div >
+        <div class="mt-4 ml-2">
+          <span class="title">{{header}}</span>
+        </div>
+        <div id="rowOverflow" *ngIf="dataitem !== undefined">
+          <div class="row" >
+            <div class="col-md-12">
+              <header >
+                <img width="70px" [src]="icon" alt="">
+                {{dataitem.main.temp}}  {{cuunit}}
+                <img width="70px" [src]="icon" alt="">
+              </header>
+            </div>
+            <div class="col-md-12 date">
+              <p>{{currentdate | date:'fullDate'}}</p>
+            </div>
+            <div class="col-md-12 city_name">
+              <p>{{dataitem.name}}</p>
+            </div>
+            <div class="col-md-12">
+              <table class="table" >
+                  <tbody >
+                      <tr class="trhover" >
+                          <td>
+                            <p>Average temperature</p>
+                          </td>
+                          <td>
+                            <p>{{dataitem.main.temp}}  {{cuunit}}</p>
+                          </td>
+                      </tr>
+                      <tr class="trhover" >
+                          <td>
+                            <p>Min/Max temperature</p>
+                          </td>
+                          <td>
+                            <p>Min: {{dataitem.main.temp_min}}  {{cuunit}}, Max: {{dataitem.main.temp_max}}  {{cuunit}}</p>
+                          </td>
+                      </tr>
+                      <tr class="trhover" >
+                          <td>
+                            <p>Weather description</p>
+                          </td>
+                          <td>
+                            <p>{{dataitem.weather[0].description}}</p>
+                          </td>
+                      </tr>
+                      <tr class="trhover" >
+                          <td>
+                            <p>Wind speed</p>
+                          </td>
+                          <td>
+                            <p>{{dataitem.wind.speed}} meter/sec</p>
+                          </td>
+                      </tr>
+                      <tr class="trhover" >
+                          <td>
+                            <p>Humidity</p>
+                          </td>
+                          <td>
+                            <p>{{dataitem.main.humidity}} %</p>
+                          </td>
+                      </tr>
+                      <tr class="trhover" >
+                          <td>
+                            <p>Pressure</p>
+                          </td>
+                          <td>
+                            <p>{{dataitem.main.pressure}} hPa</p>
+                          </td>
+                      </tr>
+                      <tr class="trhover" >
+                          <td>
+                            <p>Rain volume</p>
+                          </td>
+                          <td>
+                            <p *ngIf="dataitem.rain !== null">1h: {{dataitem.rain['1h']}} mm</p>
+                            <p *ngIf="dataitem.rain !== null">3h: {{dataitem.rain['3h']}} mm</p>
+                          </td>
+                      </tr>
+                      <tr class="trhover" >
+                          <td>
+                            <p>Snow volume</p>
+                          </td>
+                          <td>
+                            <p *ngIf="dataitem.snow !== null">1h: {{dataitem.snow['1h']}} mm</p>
+                            <p *ngIf="dataitem.snow !== null">3h: {{dataitem.snow['3h']}} mm</p>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button  *ngIf="dataitem !== undefined"  mat-fab class="add-btn"  (click)="get_24hr()">
+                 24 hr
+              </button>
+            </div>
+            <div class="col-md-12">
+              <div class="row pic-row mb-3">
+                <div class="pic-col" *ngFor="let pic of twpic;let k = index;">
+                  <div class="wrapper">
+                    <img [src]="pic" >
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="row pic-row mb-3">
+                  <div class="pic-col" *ngFor="let tw of twhour;let l = index;">
+                    <div  style="text-align: center;">
+                      {{tw.dt_txt | date:'medium'}}
+                    </div>
+                    <div class="wrapper" style="text-align: center;">
+                      {{tw.main.temp}} {{twunit}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button mat-fab class="search-btn" (click)="drawer.toggle()">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

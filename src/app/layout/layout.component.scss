@@ -1,0 +1,60 @@
+@import "../.././styling/variables.scss";
+
+mat-drawer-container{
+    height: calc(100vh - 65px);
+}
+mat-drawer-content {
+  z-index: unset;
+}
+.drawer{
+    width: 25%;
+    height: auto;
+    box-shadow: 3px -2px 12px -5px lightskyblue;
+    background: floralwhite;
+}
+.list {
+  a {
+    margin-bottom: 2px;
+  }
+}
+.list-group-item {
+  background-color: lightcoral;
+  box-shadow: 3px 4px 12px -5px hotpink;
+}
+.list-group-item:last-child {
+  border-bottom-right-radius: 15rem;
+}
+.list-group:focus, .list-group-item:focus{
+    outline: none;
+}
+@media screen and (max-width: 576px){
+    .drawer{
+        width: 65% !important;
+    }
+}
+.logo {
+  max-width: -webkit-fill-available;
+}
+.menubar {
+  list-style-type: none;
+  margin-top: 20px;
+  height: 100%;
+  li {
+    display: inline-block;
+    margin: 10px;
+  }
+    a:hover{
+        cursor: pointer;
+    }
+    .header_text {
+      color: coral;
+    }
+}
+@media screen and (max-width: 1023px){
+    .menubar{
+        display: none;
+    }
+}
+/deep/ .mat-card {
+  display: initial !important;
+}

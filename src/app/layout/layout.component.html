@@ -1,0 +1,28 @@
+<app-toolbar (toggle)="drawer.toggle()" >
+  <ul class="menubar">
+      <li>
+          <a class="header_text" [routerLink]="['/home']" routerLinkActive="active" >Home</a>
+      </li>
+  </ul>
+</app-toolbar>
+<mat-drawer-container  >
+    <mat-drawer  class="drawer" #drawer mode="over">
+      <div >
+        <img class="logo" src="../.././assets/flower_logo2px.jpg" alt="">
+      </div>
+      <div class="list">
+        <a [routerLink]="['/home']" routerLinkActive="active" class="list-group-item list-group-item-action"
+            (click)="drawer.toggle()" >
+            Home
+        </a>
+        <a  routerLinkActive="active" class="list-group-item list-group-item-action"
+            (click)="drawer.toggle() && showerr()" >
+            Login
+        </a>
+      </div>
+      <version></version>
+    </mat-drawer>
+    <mat-drawer-content>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>

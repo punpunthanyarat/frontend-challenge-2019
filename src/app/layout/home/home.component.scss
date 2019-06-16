@@ -1,0 +1,121 @@
+.search-btn{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin: 15px;
+  cursor: pointer;
+}
+.add-btn{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin: 15px;
+  cursor: pointer;
+}
+.add-btn:focus{
+  outline: none;
+}
+@media screen and (max-width: 376px) {
+  .version {
+    display: none;
+  }
+}
+/deep/ .mat-fab.mat-accent, .mat-flat-button.mat-accent, .mat-mini-fab.mat-accent, .mat-raised-button.mat-accent {
+  background-color: lightcoral !important;
+}
+.clock {
+    margin-top: 50px;
+    text-align: center;
+    background: floralwhite;
+}
+.backgroud_icon {
+  background-position: right top;
+  margin-left: 0px;
+  margin-right: 0px;
+  overflow-y: hidden;
+  padding-right: 0px;
+  background-repeat: no-repeat;
+  background-size: 300px 300px;
+}
+#rowOverflow{
+    padding-left: 0px;
+    padding-right: 0px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    font-family: cursive;
+}
+header {
+    text-align: center;
+    font-size: 60px;
+    font-style: initial;
+    font-family: cursive;
+    font-weight: 500;
+    box-shadow: 0px 0px 60px 2px gold;
+}
+@media screen and (max-width: 576px) {
+  header {
+      font-size: 30px !important;
+  }
+}
+.date {
+  margin-top: 1.65rem;
+  text-align: center;
+  font-family: cursive;
+  font-weight: 600;
+}
+.city_name {
+  text-align: center;
+  font-family: cursive;
+  font-weight: 600;
+}
+.btn {
+  background-color: darksalmon !important;
+}
+/deep/ .mat-tab-body-content {
+    overflow: inherit !important;
+}
+.side-nav-content {
+  background-position:right top;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 0px !important;
+  overflow-y: hidden; padding-right: 0px;
+  background-image:URL('assets/umbrella.png');
+  background-repeat: no-repeat;
+  background-size: 200px 200px;
+  width: unset;
+  overflow-y: auto;
+}
+.font-table {
+  font-size: 12.5px;
+}
+.pic-row{
+    align-items: center;
+    justify-content: center;
+}
+.pic-col{
+    flex: 0 0 18%;
+    max-width: 18%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+.wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+
+}
+.wrapper:after {
+    content: '';
+    display: block;
+    padding-top: 100%;
+}
+.wrapper img {
+    width: auto;
+    height: 100%;
+    max-width: none;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+}

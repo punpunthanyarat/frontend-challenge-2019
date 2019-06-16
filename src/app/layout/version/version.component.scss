@@ -1,0 +1,24 @@
+.version {
+    width: 100%;
+    // text-align: left;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    a {
+      font-size: 10px;
+      text-decoration: none;
+      color: coral;
+    }
+  }
+
+  .logo{
+    height: 30px;
+    margin-right: 5px;
+    img{
+      height: inherit;
+    }
+  }
